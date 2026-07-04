@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臻杆汇 - 专业台球器材维修与收售</title>
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a472a;
+            --secondary-color: #2d5f3f;
+            --accent-color: #d4af37;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 100px;
+            width: auto;
+            filter: brightness(1.1);
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 首页 Banner */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            z-index: 3;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .services,
+        .cases,
+        .map-section {
+            min-height: 100vh;
+            background: var(--white);
+        }
+
+        .services,
+        .cases {
+            display: flex;
+            align-items: center;
+        }
+
+        .services .container,
+        .cases .container {
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* 服务介绍 */
+        .services {
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* 球杆展示区 */
+        .cue-showcase {
+            background: var(--white);
+        }
+
+        .cue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .cue-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            background: var(--bg-light);
+        }
+
+        .cue-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .cue-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cue-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cue-item:hover .cue-image::before {
+            left: 100%;
+        }
+
+        .cue-info {
+            padding: 1.5rem;
+        }
+
+        .cue-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .cue-brand {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cue-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .cue-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .cue-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* 案例展示 */
+        .cases {
+            background: var(--white);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .case-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .case-content {
+            padding: 1.5rem;
+        }
+
+        .case-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .case-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* 联系方式 */
+        .contact {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .contact .section-title {
+            color: var(--white);
+        }
+
+        .contact .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .services,
+            .cases,
+            .map-section {
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-container {
+                min-height: 72px;
+            }
+
+            .logo img {
+                height: 72px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cue-grid, .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1100px) {
+            .services-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="images/logo.png" alt="臻杆汇">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#services">服务</a></li>
+                <li><a href="#cues">球杆展示</a></li>
+                <li><a href="#cases">案例</a></li>
+                <li><a href="#map">到店体验</a></li>
+            </ul>
+        </div>
+    </nav>
+
+        <!-- 首页 Banner -->
+    <section id="home" class="hero">
+        <!-- 视频背景 -->
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="images/banner/hero-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-content">
+            <!-- 顶部徽章 -->
+            <div class="hero-badge">
+                <span>🏆 专业台球器材专家</span>
+            </div>
+
+            <!-- 主标题 -->
+            <h1 class="hero-title">
+                <span class="brand-name typewriter">臻杆汇</span>
+            </h1>
+
+            <!-- 副标题 -->
+            <p class="hero-subtitle">专业台球器材维修 · 高端球杆收售</p>
+
+            <!-- 描述文字 -->
+            <p class="hero-description">十年匠心，服务超过1000+台球爱好者与球馆</p>
+
+            <!-- 特色标签 -->
+            <div class="hero-features">
+                <span class="feature-tag">✓ 原厂配件</span>
+                <span class="feature-tag">✓ 品质保证</span>
+                <span class="feature-tag">✓ 快速响应</span>
+            </div>
+
+            <!-- CTA按钮组 -->
+            <div class="hero-buttons">
+                <a href="#map" class="cta-button primary">立即咨询</a>
+                <a href="#cues" class="cta-button secondary">查看球杆</a>
+            </div>
+
+            <!-- 数据统计 -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">年专业经验</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label">+服务客户</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">+品牌球杆</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 滚动提示 -->
+        <div class="scroll-indicator">
+            <span>向下滚动探索更多</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- 服务介绍 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">我们的服务</h2>
+            <p class="section-subtitle">专业、专注、值得信赖</p>
+
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔧</div>
+                    <h3>专业维修</h3>
+                    <p>台球桌维修、更换台布、调整水平、更换胶边等全方位维修服务，确保您的台球桌处于最佳状态。</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎱</div>
+                    <h3>球杆修复</h3>
+                    <p>球杆前节修复、皮头更换、杆身打磨、接口维修等专业球杆维护，让您的爱杆重获新生。</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">💎</div>
+                    <h3>器材收售</h3>
+                    <p>高端进口球杆、二手台球桌收售，价格公道，品质保证，为您提供性价比最高的选择。</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚙️</div>
+                    <h3>定制服务</h3>
+                    <p>根据您的需求提供个性化定制服务，包括球杆改装、台球桌定制等，满足您的独特需求。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 球杆展示区 -->
+    <section id="cues" class="cue-showcase">
+        <div class="container">
+            <h2 class="section-title">精品球杆展示</h2>
+            <p class="section-subtitle">甄选全球顶级品牌，品质保证</p>
+
+            <div class="cue-grid">
+                <div class="cue-item">
+                    <div class="cue-image">🎯</div>
+                    <div class="cue-info">
+                        <div class="cue-brand">PREDATOR</div>
+                        <h3>Predator 314³ 球杆</h3>
+                        <p class="cue-description">采用314³碳纤维低位打点技术，精准度提升30%，职业选手首选。</p>
+                        <div class="cue-price">¥12,800</div>
+                        <div class="cue-tags">
+                            <span class="tag">进口</span>
+                            <span class="tag">碳纤维</span>
+                            <span class="tag">专业级</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cue-item">
+                    <div class="cue-image">🏆</div>
+                    <div class="cue-info">
+                        <div class="cue-brand">MEZZ</div>
+                        <h3>Mezz EC7-W 球杆</h3>
+                        <p class="cue-description">日本原装进口，枫木杆身，手感细腻，传力强劲，适合各种打法。</p>
+                        <div class="cue-price">¥9,600</div>
+                        <div class="cue-tags">
+                            <span class="tag">日本制造</span>
+                            <span class="tag">枫木</span>
+                            <span class="tag">经典款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cue-item">
+                    <div class="cue-image">⚡</div>
+                    <div class="cue-info">
+                        <div class="cue-brand">FURY</div>
+                        <h3>Fury FU-15 球杆</h3>
+                        <p class="cue-description">美式九球专用杆，独特木纹设计，平衡性极佳，性价比之选。</p>
+                        <div class="cue-price">¥4,200</div>
+                        <div class="cue-tags">
+                            <span class="tag">九球</span>
+                            <span class="tag">高性价比</span>
+                            <span class="tag">现货</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cue-item">
+                    <div class="cue-image">💫</div>
+                    <div class="cue-info">
+                        <div class="cue-brand">CUETEC</div>
+                        <h3>Cuetec Cynergy 球杆</h3>
+                        <p class="cue-description">碳纤维复合材质，重量轻、硬度高，精准度卓越，适合进阶玩家。</p>
+                        <div class="cue-price">¥7,800</div>
+                        <div class="cue-tags">
+                            <span class="tag">复合材质</span>
+                            <span class="tag">轻量化</span>
+                            <span class="tag">新品</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cue-item">
+                    <div class="cue-image">🌟</div>
+                    <div class="cue-info">
+                        <div class="cue-brand">LUCASI</div>
+                        <h3>Lucasi LZC29 球杆</h3>
+                        <p class="cue-description">经典枫木杆身配低挠度前节，稳定性强，适合斯诺克和九球。</p>
+                        <div class="cue-price">¥5,600</div>
+                        <div class="cue-tags">
+                            <span class="tag">通用</span>
+                            <span class="tag">稳定</span>
+                            <span class="tag">热销</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cue-item">
+                    <div class="cue-image">🔥</div>
+                    <div class="cue-info">
+                        <div class="cue-brand">OB</div>
+                        <h3>OB Classic Pro 球杆</h3>
+                        <p class="cue-description">美国原装进口，OB前节久负盛名，传力稳定，职业赛事指定品牌。</p>
+                        <div class="cue-price">¥8,900</div>
+                        <div class="cue-tags">
+                            <span class="tag">美国</span>
+                            <span class="tag">职业级</span>
+                            <span class="tag">经典</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例展示 -->
+    <section id="cases" class="cases">
+        <div class="container">
+            <h2 class="section-title">成功案例</h2>
+            <p class="section-subtitle">多年经验，值得信赖</p>
+
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-image">🎯</div>
+                    <div class="case-content">
+                        <h3>某知名台球厅全面维护</h3>
+                        <p>为市区知名台球厅的12张星牌台球桌进行全面维护，包括更换台布、调整水平、更换胶边等，客户高度满意。</p>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">🏆</div>
+                    <div class="case-content">
+                        <h3>Predator球杆前节修复</h3>
+                        <p>为客户修复价值万元的Predator球杆前节裂纹，采用专业工艺恢复如初，打感毫无影响。</p>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">💎</div>
+                    <div class="case-content">
+                        <h3>二手台球桌翻新</h3>
+                        <p>将8成新的二手台球桌进行专业翻新，更换配件后焕然一新，为客户节省50%成本。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- 地图区域（左右布局） -->
+    <section id="map" class="map-section">
+        <div class="map-header">
+            <h2 class="section-title">到店体验</h2>
+            <p class="section-subtitle">欢迎莅临指导，专业团队为您服务</p>
+        </div>
+
+        <div class="map-container">
+            <!-- 左侧：地图框体 -->
+            <div class="map-wrapper">
+                <div id="amap-container"></div>
+            </div>
+
+            <!-- 右侧：店铺信息 -->
+            <div class="store-info">
+                <!-- 地址信息 -->
+                <div class="info-card">
+                    <h3>店铺地址</h3>
+                    <div class="info-item">
+                        <span>📍</span>
+                        <span>江苏省苏州市工业园区XXX路XXX号</span>
+                    </div>
+                </div>
+
+                <!-- 联系方式 -->
+                <div class="info-card contact">
+                    <h3>联系我们</h3>
+                    <div class="info-item">
+                        <strong>电话：</strong>
+                        <span>138-0000-0000</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>微信：</strong>
+                        <span>billiard_expert</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>邮箱：</strong>
+                        <span>info@zhenganhui.com</span>
+                    </div>
+                </div>
+
+                <!-- 营业时间 -->
+                <div class="info-card hours">
+                    <h3>营业时间</h3>
+                    <div class="info-item">
+                        <strong>周一至周日：</strong>
+                        <span>9:00 - 21:00</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>节假日：</strong>
+                        <span>正常营业</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式（简洁Footer风格） -->
+    <section id="contact" class="contact-footer">
+        <div class="footer-container">
+            <!-- 左侧：品牌Logo -->
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="臻杆汇" class="footer-logo">
+                <p class="footer-slogan">专业台球器材维修与收售</p>
+            </div>
+
+            <!-- 右侧：联系信息（三栏） -->
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>服务项目</h4>
+                    <ul>
+                        <li>台球桌维修</li>
+                        <li>球杆修复</li>
+                        <li>器材收售</li>
+                        <li>定制服务</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>客户服务</h4>
+                    <ul>
+                        <li>📱 138-0000-0000</li>
+                        <li>💬 billiard_expert</li>
+                        <li>⏰ 9:00-21:00 全年无休</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>联系我们</h4>
+                    <div class="footer-qrcodes">
+                        <div class="qrcode-item">
+                            <div class="qrcode-placeholder">
+                                <span>微信二维码</span>
+                            </div>
+                            <p>微信咨询</p>
+                        </div>
+                        <div class="qrcode-item">
+                            <div class="qrcode-placeholder">
+                                <span>公众号</span>
+                            </div>
+                            <p>关注我们</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2026 臻杆汇 - 专业台球器材维修与收售 | 品质保证 诚信经营</p>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有卡片元素
+        document.querySelectorAll('.service-card, .cue-item, .case-card, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // 导航栏背景透明度
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+
+    <!-- 外部JS文件 -->
+    <script src="js/video-handler.js"></script>
+    <script src="js/dynamic-features.js"></script>
+    <script src="js/scroll-effects.js"></script>
+    <!-- 高德地图API -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=c77c93d6e0499aa61329902aefe06d8c&plugin=AMap.Scale,AMap.ToolBar,AMap.PlaceSearch"></script>
+    <script src="js/amap-init.js"></script>
+</body>
+</html>

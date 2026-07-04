@@ -1,0 +1,339 @@
+/* ========== 地图区域（左右布局） ========== */
+
+.map-section {
+    background: #fff;
+    padding: 5rem 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.map-header {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.map-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* 左侧地图框体 */
+.map-wrapper {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+    height: 600px;
+    position: relative;
+}
+
+#amap-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* 右侧店铺信息 */
+.store-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.store-info h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.store-info .subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0 0 2rem 0;
+}
+
+.info-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.info-card.contact {
+    background: #fff;
+    color: var(--text-dark);
+}
+
+.info-card.contact .info-item,
+.info-card.contact .info-item span {
+    color: #555;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.info-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-card h3::before {
+    content: '📍';
+    font-size: 1.5rem;
+}
+
+.info-card.contact h3::before {
+    content: '📞';
+}
+
+.info-card.hours h3::before {
+    content: '🕐';
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 0.8rem 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+.info-item strong {
+    min-width: 80px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* CTA按钮 */
+.store-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.store-cta .btn {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    color: var(--text-dark);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+
+.btn-secondary {
+    background: #fff;
+    color: var(--text-dark);
+    border: 2px solid var(--accent-color);
+}
+
+.btn-secondary:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+/* ========== 联系Footer（简洁风格） ========== */
+
+.contact-footer {
+    background: #f8f9fa;
+    min-height: 360px;
+    padding: 4.5rem 0 3.5rem 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* 左侧品牌区 */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-logo {
+    height: 100px;
+    width: auto;
+    max-width: 600px;
+    display: block;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.footer-slogan {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* 右侧内容区 */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.footer-column h4 {
+    color: #333;
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin: 0.6rem 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* 二维码区域 */
+.footer-qrcodes {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.qrcode-item {
+    text-align: center;
+}
+
+.qrcode-placeholder {
+    width: 100px;
+    height: 100px;
+    background: #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    border: 2px dashed #ccc;
+}
+
+.qrcode-placeholder span {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.qrcode-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* 版权区域 */
+.footer {
+    background: #333;
+    color: #999;
+    text-align: center;
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* ========== 响应式设计 ========== */
+
+@media (max-width: 1024px) {
+    .map-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .map-wrapper {
+        height: 500px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .map-section {
+        padding: 3rem 0;
+        min-height: auto;
+    }
+
+    .map-container {
+        gap: 2rem;
+    }
+
+    .map-wrapper {
+        height: 400px;
+    }
+
+    .store-info h2 {
+        font-size: 2rem;
+    }
+
+    .store-cta {
+        flex-direction: column;
+    }
+
+    .contact-footer {
+        min-height: auto;
+        padding: 3rem 0 2rem 0;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-qrcodes {
+        justify-content: center;
+    }
+
+    .qrcode-placeholder {
+        width: 90px;
+        height: 90px;
+    }
+}
