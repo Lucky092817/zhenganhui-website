@@ -28,6 +28,8 @@ window.addEventListener('scroll', () => {
 
 // 2. Hero视差效果（更明显）
 window.addEventListener('scroll', () => {
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+
     const scrolled = window.pageYOffset;
     const heroVideo = document.querySelector('.hero-video');
     const heroContent = document.querySelector('.hero-content');
